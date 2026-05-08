@@ -1,0 +1,137 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb);
+    background-size: 300% 300%;
+    animation: gradientMove 8s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Animated Gradient */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 25px;
+    border-radius: 20px;
+    width: 350px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+li {
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.delete:hover {
+    transform: scale(1.1);
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+    <h2>✨ Task Manager</h2>
+
+    <div class="input-section">
+        <input type="text" id="taskInput" placeholder="Enter your task...">
+        <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+</div>
+
+ 
+
+<script>
+function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value;
+
+    if (task === "") {
+        alert("Please enter a task");
+        return;
+    }
+
+    let li = document.createElement("li");
+    li.innerText = task;
+
+    let delBtn = document.createElement("button");
+    delBtn.innerText = "Delete";
+    delBtn.classList.add("delete");
+
+    delBtn.onclick = function () {
+        li.remove();
+    };
+
+    li.appendChild(delBtn);
+    document.getElementById("taskList").appendChild(li);
+
+    input.value = "";
+}
+</script>
+
+</body>
+</html>
